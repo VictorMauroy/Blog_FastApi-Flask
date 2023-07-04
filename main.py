@@ -1,14 +1,41 @@
-from typing import Union
-from fastapi import FastAPI
+from flask import Flask, render_template, request, url_for, redirect
 
-app = FastAPI()
+app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return '<h1>Index Page<h1>'
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.route('/Welcome/')
+def welcome():
+    return render_template('welcome.html')
 
+@app.route('/User/<name>')
+def get_user(name):
+    return render_template('one_user.html', user_name=name)
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+# @app.route('/login/', methods=['POST', 'GET'])
+# def login():
+#     if request.method == 'POST':
+#         user = request.form['user_name']
+#         print(user)
+#         return redirect(url_for('success', name=user))
+#     else:
+#         user = request.args.get('user_name')
+#         print(user)
+#         return redirect(url_for('success', name=user))
+
+@app.route('/login/', methods=['POST'])
+def login():
+    user = request.form['user_name']
+    print(user)
+    return redirect(url_for('success', name=user))
+
+@app.route('/success/<name>')
+def success(name):
+    return f'welcome {name}'
+
+# Always leave those lines at the end of the file. 
+# If not, will not take into account the code under it
+if __name__ == "__main__":
+    app.run(debug=True)
