@@ -9,7 +9,8 @@ session = Session(bind=engine)
 
 @app.route('/')
 def feed():
-    return render_template('index.html')
+    posts = session.query(Post).all()
+    return render_template('index.html', posts=posts)
 
 # @app.route('/User/<name>')
 # def get_user(name):
