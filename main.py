@@ -14,26 +14,21 @@ def welcome():
 def get_user(name):
     return render_template('one_user.html', user_name=name)
 
-# @app.route('/login/', methods=['POST', 'GET'])
-# def login():
-#     if request.method == 'POST':
-#         user = request.form['user_name']
-#         print(user)
-#         return redirect(url_for('success', name=user))
-#     else:
-#         user = request.args.get('user_name')
-#         print(user)
-#         return redirect(url_for('success', name=user))
-
-@app.route('/login/', methods=['POST'])
+@app.route('/login/', methods=['POST', 'GET'])
 def login():
-    user = request.form['user_name']
-    print(user)
-    return redirect(url_for('success', name=user))
+    if request.method == 'POST':
+        user = request.form['user_name']
+        return redirect(url_for('success', name=user))
+    else:
+        # user = request.args.get('user_name')
+        # return redirect(url_for('success', name=user))
+        return render_template('login.html')
 
 @app.route('/success/<name>')
 def success(name):
     return f'welcome {name}'
+
+
 
 # Always leave those lines at the end of the file. 
 # If not, will not take into account the code under it
