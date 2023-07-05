@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+
+    <title>Flow</title>
+
+{% endblock %}
+
+
+
+{% block body %}
+
+    <h1>Welcome back!</h1>
+
+    <!-- 
+        Connexion:
+        If user is connected, thanks to a token :
+            => Show every post that exists on the blog. (Don't care about what he follow)
+        If guest (not connected)
+            => Require connexion, then move (with a button) to the login page.
+
+
+        >>>>>>>>>>>>>>>>>>>>>> IF CONNECTED <<<<<<<<<<<<<<<<<<<<<<<<<
+        Posts:
+            They show a title, a content, a creator, a date of creation.
+            They also have a comment section where the current user can leave a comment.
+                ///Optional: Show 1 to 3 comments and has a button to show more (ten by ten ?)
+
+        Comments:
+            Show a creator, a content and a date of creation.
+                ///Optional: can reply to a comment.
+
+        Post creation section:
+            At the top of the blog, a user can create a new post by clicking on a button "new post".
+            Redirect to the "post" page.
+
+        When a post is added or a comment is posted, refresh the page. 
+    -->
+
+{% endblock %}
+

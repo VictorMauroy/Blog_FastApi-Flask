@@ -1,17 +1,33 @@
 {% extends 'base.html' %}
 
+
 {% block head %} 
 
-<title>Log in</title>
+    <title>Log in</title>
 
 {% endblock %}
 
-{% block body %}
 
-<form action="/login" method="post" >
-    <p>Enter your name:</p>
-    <p><input type="text" name="user_name" /></p>
-    <p><input type="submit" value="submit"/></p>
-</form>
+
+{% block body %}
+    <!--
+        Login page with a few options:
+
+        Register:
+            Add a button to register/sign in that redirect to another page where we can add
+                informations and create an account (add it to database), then connect the user to that account.
+                So, do not use log in page again ?
+        
+        Log in:
+            Huge form where a guest must enter a <username or email> and a <password>.
+            Then submit by pressing a button "Connexion"
+
+    -->
+
+    <form action="/login" method="post" >
+        <p>Enter your name:</p>
+        <p><input type="text" name="user_name" /></p>
+        <p><input type="submit" value="submit"/></p>
+    </form>
 
 {% endblock %}

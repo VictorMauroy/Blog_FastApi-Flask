@@ -15,9 +15,8 @@ class User(Base):
     
     # Properties
     username: Mapped[str] = mapped_column(nullable=False, unique=True)
-    name: Mapped[str] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(nullable=False)
-    mdp: Mapped[str] = mapped_column(nullable=False)
+    password: Mapped[str] = mapped_column(nullable=False)
 
 
 class Comment(Base):
