@@ -23,9 +23,23 @@ def create_post():
         title = request.form['title']
         message = request.form['message']
 
-        # INSERT INTO DATABASE WITH TRY EXCEPT
+        # Should update later with an user session and a token
+        current_user = session.query(User).get(1)
 
-        return redirect('/') # Do not forget to update
+        new_post = Post(
+            title= title,
+            content=message,
+            user=current_user
+        )
+
+        # INSERT INTO DATABASE the new post
+        try:
+            session.add(new_post)
+            session.commit()
+            return redirect('/') # Do not forget to update
+        except:
+            return {"error": "There is an issue to send your post, please try again."}
+
     else:
         return render_template('post.html')
 
@@ -43,8 +57,10 @@ def login():
         user = session.query(User).filter_by(username=username, password=password).scalar()
         
         if user != None:
+            # Should later return to main/index page with an effective connection
             return redirect(url_for('success', name=username))
         else:
+            # Should replace it later by an error.html page with a parameter "error name".
             return {"error": "Username or password does not match or exist."}
     else:
         return render_template('login.html')
@@ -60,7 +76,7 @@ def register():
         email = request.form['email']
         password = request.form['password']
 
-        # Refuse the guest to register if duplicate username or email.
+        # Refuse to register the guest if duplicate username or email.
         duplicate_email = session.query(User).filter_by(email=email).scalar()
         duplicate_username = session.query(User).filter_by(username=username).scalar()
         if duplicate_email != None or duplicate_username != None:
