@@ -36,11 +36,16 @@ def create_post():
 @app.route('/login/', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        user = request.form['user_name']
+        username = request.form['username']
+        password = request.form['password']
 
-        # CHECK INTO DATABASE WITH TRY EXCEPT
-
-        return redirect(url_for('success', name=user))
+        # CHECK IF USER EXISTS INTO DATABASE
+        user = session.query(User).filter_by(username=username, password=password).scalar()
+        
+        if user != None:
+            return redirect(url_for('success', name=username))
+        else:
+            return {"error": "Username or password does not match or exist."}
     else:
         return render_template('login.html')
 
@@ -55,8 +60,10 @@ def register():
         email = request.form['email']
         password = request.form['password']
 
-        duplicate_user = session.query(User).filter_by(email=email).scalar()
-        if duplicate_user != None:
+        # Refuse the guest to register if duplicate username or email.
+        duplicate_email = session.query(User).filter_by(email=email).scalar()
+        duplicate_username = session.query(User).filter_by(username=username).scalar()
+        if duplicate_email != None or duplicate_username != None:
             return {"error": "user already exist"}
 
         new_user = User(
