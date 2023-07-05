@@ -16,5 +16,36 @@
             Then connect the user to that account.
                 So, do not use log in page again ?
     -->
+    <h1>Register</h1>
+
+    <form action="/register" method="post" >
+        
+        <div>
+            <label>Enter an username:</label> <br/>
+            <input type="text" name="username" placeholder="AwesomeCatLover">
+        </div>
+        
+        <div>
+            <label>Enter an email:</label><br/>
+            <input 
+                type="email"
+                name="email" 
+                placeholder="catlover@mail.com"
+            >
+        </div>
+
+        <div>
+            <label>Enter your password</label><br/>
+            <input type="password" name="password">
+        </div>
+
+        <div>
+            <label>No time to check your password, go ahead.</label><br/>
+        </div>
+        
+        <div>
+            <input type="submit" value="Create account"/>
+        </div>
+    </form>
 
 {% endblock %}

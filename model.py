@@ -29,7 +29,7 @@ class Comment(Base):
     user: Mapped["User"] = relationship(back_populates='comments')
     # Post relation
     post_id: Mapped[int] = mapped_column(ForeignKey("posts.id"), nullable=False)
-    post: Mapped["Post"] = relationship(back_populates='posts')
+    post: Mapped["Post"] = relationship(back_populates='comments')
     
     # Properties
     message: Mapped[str] = mapped_column(Text, nullable=False)

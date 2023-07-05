@@ -36,6 +36,25 @@
 
         When a post is added or a comment is posted, refresh the page. 
     -->
+    <table>
+        <caption style="color:red">Last posts</caption>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+            <th scope="col">Creator</th>
+        </tr>
+        
+        {% for post in posts %}
+        
+            <tr>
+                <th scope="row"> {{ post.title }} </th>
+                <td> {{ post.content }} </td>
+                <td> {{ post.user.username }} </td>
+            </tr>
+        
+        {% endfor %}
+        
+    </table>
 
 {% endblock %}
 

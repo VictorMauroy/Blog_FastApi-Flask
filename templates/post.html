@@ -16,6 +16,29 @@
                     ///Optional: add an image, a file, a tag, etc.
                     ///Note: usualy, we don't care about a title.
     -->
+    <h1>Create a post</h1>
+
+    <!-- <form action="http://localhost:5000/post" method="post" > -->
+    <form action="/post" method="post" >
+        
+        <div>
+            <label>Enter a title:</label> <br/>
+            <textarea cols="40" rows="1" name="title" placeholder="Again with your Elden Ring"></textarea>
+        </div>
+        
+        <div>
+            <label>Enter a message:</label><br/>
+            <textarea 
+                cols="40" rows="7"
+                name="message" 
+                placeholder="My friends are telling me that I talk too much about Elden Ring. But they buy it ahah"
+            ></textarea>
+        </div>
+        
+        <div>
+            <input type="submit" value="send"/>
+        </div>
+    </form>
 
 {% endblock %}
 
